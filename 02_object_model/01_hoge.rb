@@ -5,7 +5,16 @@
 # HogeクラスのスーパークラスはStringである
 # 自身が"hoge"という文字列である時（HogeクラスはStringがスーパークラスなので、当然自身は文字列である）、trueを返すhoge?メソッドが定義されている
 
-class Hoge
+class Hoge < String
+  Hoge = 'hoge'
+
+  def hogehoge
+    Hoge
+  end
+
+  def hoge?
+    self == 'hoge'
+  end
 end
 
 # Q2.
@@ -17,3 +26,11 @@ end
 # - Class
 # - Hash
 # - TrueClass
+
+[String, Integer, Numeric, Class, Hash, TrueClass].each do |klass|
+  klass.class_eval do
+    define_method :hoge do
+      'hoge'
+    end
+  end
+end
