@@ -28,9 +28,7 @@ end
 # - TrueClass
 
 [String, Integer, Numeric, Class, Hash, TrueClass].each do |klass|
-  klass.class_eval do
-    define_method :hoge do
-      'hoge'
-    end
+  klass.define_method :hoge do
+    'hoge'
   end
 end
