@@ -8,6 +8,23 @@
 # - 4. `F1.new.respond_to?(定義していないメソッド名)` を実行したときにtrueを返すこと
 
 class F1
+  class << self
+    define_method :world do
+      'world'
+    end
+  end
+
+  define_method :hello do
+    'hello'
+  end
+
+  def method_missing(name, *args)
+    'NoMethodError'
+  end
+
+  def respond_to_missing?(name, include_private = false)
+    true
+  end
 end
 
 # Q2.
@@ -15,4 +32,9 @@ end
 # - 1. 実行するとhiインスタンスメソッドを定義するadd_hiメソッドを定義すること
 
 class F2
+  def add_hi
+    self.class.define_method :hi do
+      'hi'
+    end
+  end
 end
